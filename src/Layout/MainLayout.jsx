@@ -26,7 +26,10 @@ const MainLayout = ({ children }) => {
                         </div>
                     </div>
                 </div>
-                {children}
+                <main className="container mx-auto">
+                    {children}
+                </main>
+                <footer className='h-40 bg-green-100'>footer</footer>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
