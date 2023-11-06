@@ -28,8 +28,9 @@ const router = createBrowserRouter([
                 element: <AllFood></AllFood>
             },
             {
-                path: '/food/details',
-                element: <FoodDetails></FoodDetails>
+                path: '/food/details/:id',
+                element: <FoodDetails></FoodDetails>,
+                // loader: ({params}) => fetch(`api/${params.id}`)
             },
             {
                 path: '/order-now',
