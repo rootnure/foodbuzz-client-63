@@ -16,7 +16,7 @@ const Food = ({ food }) => {
                     <p>Price: {price}</p>
                     <p>Quantity: {quantity}</p>
                     <div className="card-actions">
-                        <button className="btn btn-primary w-full"><Link to={`/food/details/${_id}`}>Details</Link></button>
+                        <Link to={`/food/details/${_id}`} className='w-full'><button className="btn btn-primary w-full">Details</button></Link>
                     </div>
                 </div>
             </div>

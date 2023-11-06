@@ -21,7 +21,7 @@ const TopFoods = () => {
                 }
             </div>
             <div className="flex justify-center my-12">
-                <button className="btn btn-primary"><Link to="/allFood">See All</Link></button>
+                <Link to="/allFood"><button className="btn btn-primary">See All</button></Link>
             </div>
         </section>
     );

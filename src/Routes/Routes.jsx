@@ -12,6 +12,7 @@ import Profile from "../pages/User/Profile";
 import AddNew from "../pages/User/AddNew";
 import MyFoods from "../pages/User/MYFoods";
 import Orders from "../pages/User/Orders";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/order-now/:id',
-                element: <OrderNow></OrderNow>
+                element: <PrivateRoute><OrderNow></OrderNow></PrivateRoute>
                 // loader: ({params}) => fetch(`api/${params.id}`)
             },
             {

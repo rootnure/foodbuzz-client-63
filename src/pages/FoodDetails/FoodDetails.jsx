@@ -27,7 +27,7 @@ const FoodDetails = () => {
                         <p>Available Quantity: {quantity}</p>
                         <p>Made by: {made_by}</p>
                         <p className="py-4">{short_desc}</p>
-                        <button className="btn btn-primary btn-sm"><Link to={`/order-now/${_id}`}>Order Now</Link></button>
+                        <Link to={`/order-now/${_id}`}><button className="btn btn-primary btn-sm">Order Now</button></Link>
                     </div>
                 </div>
             </div>
