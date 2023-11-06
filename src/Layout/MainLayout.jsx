@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import NavItems from "../Shared/NavItems";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+import Footer from '../Shared/Footer';
 
 const MainLayout = ({ children }) => {
     return (
@@ -9,7 +10,7 @@ const MainLayout = ({ children }) => {
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="w-full navbar bg-base-300">
+                <div className="w-full navbar">
                     <div className="container mx-auto">
                         <div className="flex-none lg:hidden">
                             <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost text-2xl">
@@ -29,11 +30,11 @@ const MainLayout = ({ children }) => {
                 <main className="container mx-auto">
                     {children}
                 </main>
-                <footer className='h-40 bg-green-100'>footer</footer>
+                <Footer></Footer>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 min-h-full bg-base-200">
+                <ul className="menu p-4 w-9/12 min-h-full bg-base-200 text-lg">
                     <NavItems></NavItems>
                 </ul>
             </div>

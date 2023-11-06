@@ -1,6 +1,7 @@
 import { AiOutlineMenuUnfold } from 'react-icons/ai';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import NavItems from '../Shared/NavItems';
+import Footer from '../Shared/Footer';
 
 const UserLayout = () => {
     const { pathname } = useLocation();
@@ -41,7 +42,7 @@ const UserLayout = () => {
                             </section>
                         </div>
                     </main>
-                    <footer className='h-40 bg-green-100'>footer</footer>
+                    <Footer></Footer>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>

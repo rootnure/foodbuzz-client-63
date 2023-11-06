@@ -19,7 +19,7 @@ const AllFood = () => {
                 }
             </section>
             <section className="flex justify-end">
-                <div className="join join-vertical lg:join-horizontal">
+                <div className="join join-horizontal">
                     <button className="btn btn-sm join-item"><MdKeyboardDoubleArrowLeft></MdKeyboardDoubleArrowLeft></button>
                     <button className="btn btn-sm join-item"><MdKeyboardArrowLeft></MdKeyboardArrowLeft></button>
                     <button className="btn btn-sm join-item">1</button>
