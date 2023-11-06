@@ -1,19 +1,14 @@
+import { useState } from "react";
 import Food from "./Food";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useEffect } from "react";
+import axios from "axios";
 
 const AllFood = () => {
-    const foods = [
-        { _id: 1, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 2, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 3, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 4, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 5, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 6, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 7, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 8, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 9, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-        { _id: 10, food_name: "Food 1", food_img: "https://i.ibb.co/QFvRbs3/image.png", category: "Fast Food", price: 499, quantity: 20 },
-    ]
+    const [foods, setFoods] = useState([]);
+    useEffect(() => {
+        axios.get('/allFood.json').then(response => setFoods(response.data))
+    }, [])
 
     const handleSearchFood = e => {
         e.preventDefault();
@@ -39,7 +34,7 @@ const AllFood = () => {
             {/* search results (show all by default) */}
             <section className="grid grid-cols-3 gap-3">
                 {
-                    foods.slice(0, 9).map(food => <Food key={food._id} food={food}></Food>)
+                    foods.map(food => <Food key={food._id} food={food}></Food>)
                 }
             </section>
             <section className="flex justify-center my-6">

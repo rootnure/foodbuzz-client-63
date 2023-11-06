@@ -33,8 +33,9 @@ const router = createBrowserRouter([
                 // loader: ({params}) => fetch(`api/${params.id}`)
             },
             {
-                path: '/order-now',
+                path: '/order-now/:id',
                 element: <OrderNow></OrderNow>
+                // loader: ({params}) => fetch(`api/${params.id}`)
             },
             {
                 path: '/blog',

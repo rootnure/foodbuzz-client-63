@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 const Food = ({ food }) => {
-    console.log(food);
     const { _id, food_name, food_img, category, price, quantity } = food;
 
     return (

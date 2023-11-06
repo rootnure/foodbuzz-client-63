@@ -8,11 +8,14 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-requirement
 dist
 dist-ssr
 *.local
+
+# custom ignored file/folder
+requirement
 src/assets
+public/allFood.json
 
 # Editor directories and files
 .vscode/*
