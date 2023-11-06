@@ -1,32 +1,18 @@
 .swiper {
-  width: 100%;
-  height: 100%;
+  @apply w-full h-full;
 }
 
 .swiper-slide0 {
-  /* text-align: center;
-  font-size: 18px;
-  background: #fff;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center; */
   @apply text-center text-lg bg-white flex justify-center items-center;
 }
 
-/* .swiper-slide img {
-  @apply block w-full h-full object-cover;
-} */
-
 .autoplay-progress {
-  @apply scale-[0.65] absolute right-4 bottom-4 z-10 w-12 h-12 flex items-center justify-center font-bold;
-  color: var(--swiper-theme-color);
+  @apply scale-[0.65] absolute right-4 bottom-4 z-10 w-12 h-12 flex items-center justify-center font-bold text-[#007aff];
 }
 
 .autoplay-progress svg {
-  @apply stroke-[4px] absolute top-0 left-0 z-10 w-full h-full transform -rotate-90 fill-none;
+  @apply stroke-[4px] stroke-[#007aff] absolute top-0 left-0 z-10 w-full h-full transform -rotate-90 fill-none;
   --progress: 0;
-  stroke: var(--swiper-theme-color);
   stroke-dashoffset: calc(130 * (1 - var(--progress)));
   stroke-dasharray: 130;
 }
