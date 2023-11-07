@@ -1,9 +1,15 @@
+import { Helmet } from "react-helmet-async";
 
 const Orders = () => {
     return (
-        <div>
-            my order history
-        </div>
+        <>
+            <Helmet>
+                <title>Foodbuzz | My Orders</title>
+            </Helmet>
+            <section>
+                my order history
+            </section>
+        </>
     );
 };
 

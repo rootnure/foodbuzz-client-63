@@ -1,9 +1,15 @@
+import { Helmet } from "react-helmet-async";
 
 const MyFoods = () => {
     return (
-        <div>
-            my added food items
-        </div>
+        <>
+            <Helmet>
+                <title>Foodbuzz | My Foods</title>
+            </Helmet>
+            <section>
+                my added food items
+            </section>
+        </>
     );
 };
 

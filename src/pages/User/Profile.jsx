@@ -1,9 +1,15 @@
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
     return (
-        <section>
-            User Profile
-        </section>
+        <>
+            <Helmet>
+                <title>Foodbuzz | Profile</title>
+            </Helmet>
+            <section>
+                User Profile
+            </section>
+        </>
     );
 };
 

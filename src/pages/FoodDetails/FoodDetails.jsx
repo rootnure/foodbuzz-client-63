@@ -25,7 +25,7 @@ const FoodDetails = () => {
                         <p>Category: {category}</p>
                         <p>Price: {price}</p>
                         <p>Available Quantity: {quantity}</p>
-                        <p>Made by: {made_by}</p>
+                        <p>Made by: {made_by?.author}</p>
                         <p>Origin: {origin}</p>
                         <p className="py-4">{short_desc}</p>
                         <Link to={`/order-now/${_id}`}><button className="btn btn-primary btn-sm">Order Now</button></Link>
