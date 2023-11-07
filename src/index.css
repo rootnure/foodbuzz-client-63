@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 aside a.active {
-    @apply bg-green-200;
+    @apply bg-green-300;
 }
 
 table,

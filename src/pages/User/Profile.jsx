@@ -6,8 +6,8 @@ const Profile = () => {
             <Helmet>
                 <title>Foodbuzz | Profile</title>
             </Helmet>
-            <section>
-                User Profile
+            <section className="h-full w-full flex justify-center items-center">
+                <h1 className="text-center font-bold text-5xl">Coming soon...</h1>
             </section>
         </>
     );

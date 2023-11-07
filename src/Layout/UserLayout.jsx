@@ -29,15 +29,15 @@ const UserLayout = () => {
                             </div>
                         </div>
                     </div>
-                    <main className="container mx-auto">
+                    <main className="container mx-auto my-12">
                         <div className='grid grid-cols-1 md:grid-cols-6 gap-4'>
-                            <aside className='flex md:flex-col flex-wrap gap-2 mx-auto justify-center md:w-full'>
+                            <aside className='flex md:flex-col flex-wrap gap-6 mx-auto justify-center md:justify-start md:w-full'>
                                 <Link className={`px-2 py-1.5 text-center border rounded-md ${pathname === '/user' ? 'active' : ''}`} to='/user'>Profile</Link>
                                 <NavLink className="px-2 py-1.5 text-center border rounded-md" to='/user/add-food'>Add New Food</NavLink>
                                 <NavLink className="px-2 py-1.5 text-center border rounded-md" to='/user/my-foods'>My Added Foods</NavLink>
                                 <NavLink className="px-2 py-1.5 text-center border rounded-md" to='/user/my-orders'>My Ordered Items</NavLink>
                             </aside>
-                            <section className="container mx-auto col-span-3">
+                            <section className="container mx-auto col-span-5 min-h-screen">
                                 <Outlet></Outlet>
                             </section>
                         </div>
