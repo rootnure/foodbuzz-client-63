@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom";
 import SocialLogin from "../../Shared/SocialLogin";
 import { Helmet } from "react-helmet-async";
+import useContextHook from "../../hooks/useContextHook";
 
 const Login = () => {
+    const { passwordLogin } = useContextHook();
+
+    const handleUserLogin = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email;
+        const password = form.password;
+        passwordLogin(email, password)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => console.error(err))
+    }
     return (
         <>
             <Helmet>
@@ -15,18 +29,18 @@ const Login = () => {
                             <h1 className="text-5xl font-bold">Login now!</h1>
                         </div>
                         <div className="card flex-shrink-0 w-96 min-w-sm shadow-2xl bg-base-100">
-                            <form className="card-body">
+                            <form onSubmit={handleUserLogin} className="card-body">
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="email" placeholder="email" className="input input-bordered" required />
+                                    <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" placeholder="password" className="input input-bordered" required />
+                                    <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                                     <label className="label">
                                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>

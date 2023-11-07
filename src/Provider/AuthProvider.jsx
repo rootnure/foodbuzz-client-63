@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { onAuthStateChanged, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { onAuthStateChanged, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useEffect, useState } from 'react';
 import { createContext } from 'react';
 import auth from '../firebase/firebase.config';
@@ -18,14 +18,26 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    const passwordLogin = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
     const googleSignIn = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
 
+    const updateUserInfo = (displayName, photoURL) => {
+        setLoading(true);
+        return updateProfile(auth.currentUser, {
+            displayName, photoURL
+        })
+    }
+
     const logOut = () => {
         setLoading(true);
-        signOut(auth);
+        return signOut(auth);
     }
 
     useEffect(() => {
@@ -40,7 +52,9 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
+        passwordLogin,
         googleSignIn,
+        updateUserInfo,
         logOut
     }
 

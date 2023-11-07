@@ -1,8 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useContextHook from '../hooks/useContextHook';
+import { toast } from 'react-toastify';
 
 const NavItems = () => {
-    const { user } = useContextHook();
+    const { user, logOut } = useContextHook();
+    const navigate = useNavigate();
+
+    const handleLogOut = () => {
+        console.log("logout clicked");
+        logOut()
+            .then(() => {
+                toast.success('Logout Successfully');
+                navigate('/');
+            })
+    }
     return (
         <>
             <li><NavLink to='/'>Home</NavLink></li>
@@ -10,10 +21,10 @@ const NavItems = () => {
             <li><NavLink to='/blog'>Blog</NavLink></li>
             {user && <>
                 <li><NavLink to='/user'>Profile</NavLink></li>
-                <li><button>Logout</button></li>
+                <li onClick={handleLogOut}><button>Logout</button></li>
             </>
             }
-            <li><NavLink to='/login'>Login</NavLink></li>
+            {!user && <li><NavLink to='/login'>Login</NavLink></li>}
         </>
 
     );

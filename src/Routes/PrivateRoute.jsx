@@ -3,7 +3,10 @@ import { Navigate } from 'react-router-dom';
 import useContextHook from '../hooks/useContextHook';
 
 const PrivateRoute = ({ children }) => {
-    const { user } = useContextHook();
+    const { user, loading } = useContextHook();
+    if (loading) {
+        return <p>Loading...</p>
+    }
     if (!user) {
         return <Navigate to="/login"></Navigate>
     }
