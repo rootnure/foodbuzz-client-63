@@ -1,14 +1,47 @@
 import PropTypes from 'prop-types';
+import { onAuthStateChanged, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { useEffect, useState } from 'react';
 import { createContext } from 'react';
+import auth from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
 
+const googleProvider = new GoogleAuthProvider();
+
 const AuthProvider = ({ children }) => {
 
-    const user = { email: 'nur@mail.com', displayName: 'Nur', img: "https://lh3.googleusercontent.com/-9zj1OKiW9yA/AAAAAAAAAAI/AAAAAAAAAAA/AML38-tULD6SnE_yuWSTWPjZyCAFwXDNtQ/photo.jpg?sz=46" }
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const createUser = (email, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
+
+    const googleSignIn = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
+
+    const logOut = () => {
+        setLoading(true);
+        signOut(auth);
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+            setLoading(false);
+        })
+        return () => unsubscribe();
+    }, [])
 
     const value = {
-        user
+        user,
+        loading,
+        createUser,
+        googleSignIn,
+        logOut
     }
 
     return (
