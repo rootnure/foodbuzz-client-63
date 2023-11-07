@@ -11,7 +11,7 @@ const FoodDetails = () => {
             setFoodDetails(response.data.find(food => food._id + '' === params.id));
         })
     }, [params])
-    const { _id, food_name, food_img, category, price, quantity, made_by, short_desc } = foodDetails;
+    const { _id, food_name, food_img, category, price, quantity, made_by, origin, short_desc } = foodDetails;
 
     return (
         <section className="min-h-96">
@@ -26,6 +26,7 @@ const FoodDetails = () => {
                         <p>Price: {price}</p>
                         <p>Available Quantity: {quantity}</p>
                         <p>Made by: {made_by}</p>
+                        <p>Origin: {origin}</p>
                         <p className="py-4">{short_desc}</p>
                         <Link to={`/order-now/${_id}`}><button className="btn btn-primary btn-sm">Order Now</button></Link>
                     </div>

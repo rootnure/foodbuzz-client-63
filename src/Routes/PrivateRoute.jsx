@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
+import useContextHook from '../hooks/useContextHook';
 
 const PrivateRoute = ({ children }) => {
-    if (!isNaN('user')) {
+    const { user } = useContextHook();
+    if (!user) {
         return <Navigate to="/login"></Navigate>
     }
     return children;
