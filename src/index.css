@@ -5,3 +5,17 @@
 aside a.active {
     @apply bg-green-200;
 }
+
+table,
+tr,
+th,
+td,
+thead,
+tbody {
+    @apply border;
+}
+
+td,
+th {
+    @apply px-1.5 py-0.5;
+}
