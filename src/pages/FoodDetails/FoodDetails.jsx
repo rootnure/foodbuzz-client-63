@@ -1,16 +1,16 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import useAxios from "../../hooks/useAxios";
 
 const FoodDetails = () => {
-    const params = useParams();
+    const { id } = useParams();
     const [foodDetails, setFoodDetails] = useState({});
+    const axiosSecure = useAxios();
     useEffect(() => {
-        axios.get('/allFood.json').then(response => {
-            setFoodDetails(response.data.find(food => food._id + '' === params.id));
+        axiosSecure.get(`/single-food/${id}`).then(response => {
+            setFoodDetails(response.data);
         })
-    }, [params])
+    }, [id, axiosSecure])
     const { _id, food_name, food_img, category, price, quantity, made_by, origin, short_desc } = foodDetails;
 
     return (

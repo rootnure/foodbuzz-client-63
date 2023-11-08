@@ -1,9 +1,11 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import useContextHook from '../hooks/useContextHook';
 import { toast } from 'react-toastify';
+import useAxios from '../hooks/useAxios';
 
 const NavItems = () => {
     const { user, logOut } = useContextHook();
+    const axiosSecure = useAxios();
     const navigate = useNavigate();
 
     const handleLogOut = () => {
@@ -12,6 +14,7 @@ const NavItems = () => {
             .then(() => {
                 toast.success('Logout Successfully');
                 navigate('/');
+                axiosSecure.post("/logout", { email: user.email })
             })
     }
     return (

@@ -1,19 +1,20 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useContextHook from "../../hooks/useContextHook";
 import moment from "moment/moment";
+import useAxios from "../../hooks/useAxios";
 
 const OrderNow = () => {
     const { id } = useParams();
     const { user } = useContextHook();
     const [foodDetails, setFoodDetails] = useState({});
+    const axiosSecure = useAxios();
     useEffect(() => {
-        axios.get('/allFood.json').then(response => {
-            setFoodDetails(response.data.find(food => food._id + '' === id));
+        axiosSecure.get(`/single-food/${id}`).then(response => {
+            setFoodDetails(response.data);
         })
-    }, [id])
+    }, [id, axiosSecure])
     const { _id, food_name, food_img, price, quantity, made_by } = foodDetails;
 
     const handlePurchase = e => {

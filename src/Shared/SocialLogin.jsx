@@ -1,16 +1,19 @@
 import { toast } from "react-toastify";
 import useContextHook from "../hooks/useContextHook";
 import { useNavigate } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
 
 const SocialLogin = () => {
     const { googleSignIn } = useContextHook();
+    const axiosSecure = useAxios();
     const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
         googleSignIn()
-            .then(() => {
+            .then((res) => {
                 toast.success('Login successfully');
                 navigate('/');
+                axiosSecure.post("/token", { email: res.user.email })
             })
             .catch(err => console.error(err))
     }

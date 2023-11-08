@@ -30,8 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/food/details/:id',
-                element: <FoodDetails></FoodDetails>,
-                // loader: ({params}) => fetch(`api/${params.id}`)
+                element: <FoodDetails></FoodDetails>
             },
             {
                 path: '/order-now/:id',

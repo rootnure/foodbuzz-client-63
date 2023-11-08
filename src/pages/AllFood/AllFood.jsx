@@ -2,8 +2,8 @@ import { useState } from "react";
 import Food from "./Food";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { useEffect } from "react";
-import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import useAxios from "../../hooks/useAxios";
 
 const AllFood = () => {
     const [foods, setFoods] = useState([]);
@@ -11,12 +11,13 @@ const AllFood = () => {
     const [limit, setLimit] = useState(9);
     const [dataCount, setDataCount] = useState(0);
     const [pages, setPages] = useState([]);
+    const axiosSecure = useAxios();
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/v1/all-food?page=${page}&limit=${limit}`).then(response => {
+        axiosSecure.get(`/all-foods?page=${page}&limit=${limit}`).then(response => {
             setFoods(response.data.result);
             setDataCount(response.data.dataCount);
         })
-    }, [page, limit]);
+    }, [page, limit, axiosSecure]);
 
     useEffect(() => {
         const numberOfPage = Math.ceil(dataCount / 9);

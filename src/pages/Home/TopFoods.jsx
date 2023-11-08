@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import TopFood from "./TopFood";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
+import useAxios from "../../hooks/useAxios";
 
 const TopFoods = () => {
 
     const [topFoods, setTopFoods] = useState([]);
+    const axiosSecure = useAxios();
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/v1/top-foods?foodCount=6")
+        axiosSecure.get("/top-foods?foodCount=6")
             .then(response => setTopFoods(response.data))
-    }, [])
+    }, [axiosSecure])
 
     return (
         <section className='min-h-[720px]'>
