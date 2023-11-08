@@ -7,9 +7,29 @@ import { Helmet } from "react-helmet-async";
 
 const AllFood = () => {
     const [foods, setFoods] = useState([]);
+    const [page, setPage] = useState(0);
+    const [limit, setLimit] = useState(9);
+    const [dataCount, setDataCount] = useState(0);
+    const [pages, setPages] = useState([]);
     useEffect(() => {
-        axios.get('/allFood.json').then(response => setFoods(response.data))
-    }, [])
+        axios.get(`http://localhost:5000/api/v1/all-food?page=${page}&limit=${limit}`).then(response => {
+            setFoods(response.data.result);
+            setDataCount(response.data.dataCount);
+        })
+    }, [page, limit]);
+
+    useEffect(() => {
+        const numberOfPage = Math.ceil(dataCount / 9);
+        setPages([...Array(numberOfPage).keys()]);
+    }, [dataCount]);
+
+    const handlePageChange = pageNo => {
+        if (pageNo >= 0 && pageNo <= pages.length - 1) {
+            setPage(pageNo);
+        }
+        setLimit(9);
+        window.location(0, 0);
+    }
 
     const handleSearchFood = e => {
         e.preventDefault();
@@ -44,14 +64,14 @@ const AllFood = () => {
                 </section>
                 <section className="flex justify-center my-6">
                     <div className="join join-horizontal">
-                        <button className="btn btn-sm join-item"><MdKeyboardDoubleArrowLeft></MdKeyboardDoubleArrowLeft></button>
-                        <button className="btn btn-sm join-item"><MdKeyboardArrowLeft></MdKeyboardArrowLeft></button>
-                        <button className="btn btn-sm join-item">1</button>
-                        <button className="btn btn-sm join-item">2</button>
-                        <button className="btn btn-sm join-item">3</button>
-                        <button className="btn btn-sm join-item">4</button>
-                        <button className="btn btn-sm join-item"><MdKeyboardArrowRight></MdKeyboardArrowRight></button>
-                        <button className="btn btn-sm join-item"><MdKeyboardDoubleArrowRight></MdKeyboardDoubleArrowRight></button>
+                        <button onClick={() => handlePageChange(0)} className="btn btn-sm join-item"><MdKeyboardDoubleArrowLeft></MdKeyboardDoubleArrowLeft></button>
+                        <button onClick={() => handlePageChange(page - 1)} className="btn btn-sm join-item"><MdKeyboardArrowLeft></MdKeyboardArrowLeft></button>
+                        {
+                            pages.map(pageNo =>
+                                <button key={pageNo} onClick={() => handlePageChange(pageNo)} className="btn btn-sm join-item">{pageNo + 1}</button>)
+                        }
+                        <button onClick={() => handlePageChange(page + 1)} className="btn btn-sm join-item"><MdKeyboardArrowRight></MdKeyboardArrowRight></button>
+                        <button onClick={() => handlePageChange(pages.length - 1)} className="btn btn-sm join-item"><MdKeyboardDoubleArrowRight></MdKeyboardDoubleArrowRight></button>
                     </div>
                 </section>
             </div>
