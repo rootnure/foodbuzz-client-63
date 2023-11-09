@@ -110,7 +110,7 @@ const OrderNow = () => {
                                 }
                                 <div className="form-control mt-6 col-span-2">
                                     <button className="btn btn-primary" disabled={user.email === made_by?.email || quantity === sell_count}>{quantity === sell_count ? "Item Not Available" : user.email === made_by?.email ?
-                                        "Can not buy own food" :
+                                        "Can not buy your own food" :
                                         "Confirm Purchase"}</button>
                                 </div>
                             </form>

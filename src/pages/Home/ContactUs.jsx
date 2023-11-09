@@ -12,7 +12,7 @@ const ContactUs = () => {
                 <div>
                     <h2 className="text-4xl font-bold divider my-16 md:text-left">Share your feedback</h2>
                 </div>
-                <form onSubmit={handleFooterFormSubmit} className="space-y-3 mt-6 w-1/2 mx-auto">
+                <form onSubmit={handleFooterFormSubmit} className="space-y-3 mt-6 w-11/12 md:w-2/3 lg:w-1/2 mx-auto">
                     <div className="flex gap-2">
                         <input className="border border-green-400 py-2 w-full px-3  rounded-lg duration-150" defaultValue={user?.displayName || ""} type="text" name="name" placeholder="Name (optional)" />
                         <input className="border border-green-400 py-2 w-full px-3  rounded-lg duration-150" defaultValue={user?.email || ""} type="email" name="email" placeholder="Email (optional)" />

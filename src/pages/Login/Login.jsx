@@ -20,15 +20,15 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({ email, password });
         passwordLogin(email, password)
             .then((res) => {
                 toast.success("login successfully");
                 navigate(location.state || "/");
                 axiosSecure.post("/jwt", { email: res.user.email })
-                // axios.post("http://localhost:5000/api/v1/jwt", { email: res.user.email, with })
             })
-            .catch(err => console.error(err))
+            .catch(() => {
+                toast.error("Invalid Login Credential");
+            })
     }
     return (
         <>

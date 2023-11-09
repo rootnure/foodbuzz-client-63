@@ -17,7 +17,7 @@ const TopFoods = () => {
     return (
         <section className='min-h-[720px]'>
             <h2 className="text-4xl text-center mt-32 mb-12 font-bold divider">Top Foods</h2>
-            <div className="grid grid-cols-3 gap-x-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4">
                 {
                     topFoods.map(topFood => <TopFood key={topFood._id} topFood={topFood}></TopFood>)
                 }

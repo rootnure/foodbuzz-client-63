@@ -31,7 +31,9 @@ const Register = () => {
                     })
                     .catch(err => console.error(err))
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                toast.error(err.message);
+            })
     }
 
     const handleValidPassword = () => {

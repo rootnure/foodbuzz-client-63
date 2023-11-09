@@ -86,7 +86,7 @@ const AllFood = () => {
                     }
                 </section>
                 {/* pagination buttons */}
-                <section className="flex justify-center my-6">
+                <section className="flex justify-center my-12">
                     <div className="join join-horizontal">
                         <button
                             onClick={() => handlePageChange(0)}

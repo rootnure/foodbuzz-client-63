@@ -14,7 +14,7 @@ const Instagram = () => {
     return (
         <section className="my-12">
             <h2 className="text-4xl font-bold divider my-16">Instagram</h2>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
                 {
                     instaImages.map(image => <img key={image} src={image} className="w-full max-h-full rounded-md+" />)
                 }
