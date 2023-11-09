@@ -23,8 +23,10 @@ const NavItems = () => {
             <li><NavLink to='/allFood'>All Food</NavLink></li>
             <li><NavLink to='/blog'>Blog</NavLink></li>
             {user && <>
-                <li><NavLink to='/user'>Profile</NavLink></li>
                 <li onClick={handleLogOut}><button>Logout</button></li>
+                <li><NavLink to='/user'>
+                    <img src={user.photoURL} alt="User Profile Picture" className='h-10 w-10 rounded-full' />
+                </NavLink></li>
             </>
             }
             {!user && <li><NavLink to='/login'>Login</NavLink></li>}

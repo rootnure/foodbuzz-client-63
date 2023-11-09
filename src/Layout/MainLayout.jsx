@@ -21,7 +21,7 @@ const MainLayout = ({ children }) => {
                             <Link to='/'><img src="https://i.ibb.co/d4Mz7HD/Image-removebg-preview.png" alt="Logo" className="h-12" /></Link>
                         </div>
                         <div className="flex-none hidden lg:block">
-                            <ul className="menu menu-horizontal gap-x-2">
+                            <ul className="menu menu-horizontal gap-x-2 items-center">
                                 <NavItems></NavItems>
                             </ul>
                         </div>
