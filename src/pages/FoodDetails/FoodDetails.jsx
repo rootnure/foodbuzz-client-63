@@ -58,9 +58,9 @@ const FoodDetails = () => {
                 <div className="divider my-12 text-2xl font-bold">More to choose from</div>
                 <Marquee>
                     {
-                        topFoods.map(food => <>
-                            <Link to={`/food/details/${food._id}`} title={food.food_name}><img key={food._id} src={food.food_img} className="h-40 mr-4" /></Link>
-                        </>)
+                        topFoods.map(food => <div key={food._id}>
+                            <Link to={`/food/details/${food._id}`} title={food.food_name}><img src={food.food_img} className="h-40 mr-4" /></Link>
+                        </div>)
                     }
                 </Marquee>
             </section>

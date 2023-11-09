@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+a.active {
+    @apply !bg-green-400 !text-black;
+}
+
 aside a.active {
     @apply bg-green-300;
 }
