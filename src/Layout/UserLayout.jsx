@@ -12,7 +12,7 @@ const UserLayout = () => {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
-                    <div className="w-full navbar">
+                    <div className="w-full navbar bg-green-50">
                         <div className="container mx-auto">
                             <div className="flex-none lg:hidden">
                                 <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost text-2xl">

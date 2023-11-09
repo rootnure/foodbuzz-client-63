@@ -93,7 +93,7 @@ const MyFoods = () => {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div className="font-bold text-2xl">{food.food_name} <span className="font-normal">({food.size})</span></div>
+                                                    <div className="font-bold text-2xl">{food.food_name}</div>
                                                     <div className="text-lg opacity-50">Price: ${food.price}</div>
                                                 </div>
                                             </div>
@@ -118,6 +118,7 @@ const MyFoods = () => {
                         <div className="card card-compact rounded-none">
                             <figure className="max-w-1/2 w-1/2 mx-auto h-60"><img src={foodImg} alt={modalData.food_name} /></figure>
                             <div className="card-body">
+                                <h3 className="text-2xl font-bold text-center">{modalData.food_name}</h3>
                                 <div className="form-control px-4">
                                     <label className="label">
                                         <span className="label-text">Food Image (Direct Link)</span>

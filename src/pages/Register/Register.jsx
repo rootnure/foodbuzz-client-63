@@ -4,10 +4,12 @@ import { Helmet } from "react-helmet-async";
 import useContextHook from "../../hooks/useContextHook";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
     const { createUser, updateUserInfo } = useContextHook();
     const navigate = useNavigate();
+    const axiosSecure = useAxios();
 
     const [passVisible, setPassVisible] = useState(false);
     const [passwordWarnMsg, setPasswordWarnMsg] = useState('');
@@ -22,9 +24,10 @@ const Register = () => {
         createUser(email, password)
             .then(() => {
                 updateUserInfo(name, userPhoto)
-                    .then(() => {
+                    .then((res) => {
                         toast.success('Registered successfully.');
                         navigate('/');
+                        axiosSecure.post("/token", { email: res.user.email })
                     })
                     .catch(err => console.error(err))
             })

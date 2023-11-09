@@ -2,9 +2,14 @@ import { Helmet } from "react-helmet-async";
 import SectionHeading from "../../Shared/SectionHeading";
 import { useState } from "react";
 import useContextHook from "../../hooks/useContextHook";
+import useAxios from "../../hooks/useAxios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddNew = () => {
     const { user } = useContextHook();
+    const axiosSecure = useAxios();
+    const navigate = useNavigate();
     const [imageUrl, setImageUrl] = useState('');
 
     const handleAddFoodItem = e => {
@@ -20,6 +25,8 @@ const AddNew = () => {
             category: form.category.value,
             price: form.price.value,
             quantity: form.quantity.value,
+            sell_count: 0,
+            available_quantity: form.quantity.value,
             made_by: {
                 author: user.displayName,
                 email: user.email
@@ -27,7 +34,13 @@ const AddNew = () => {
             origin: form.origin.value,
             short_desc: form.shortDesc.value
         }
-        console.log(formDataToPost);
+        axiosSecure.post("/add-new", formDataToPost)
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success("Item added successfully");
+                    navigate("/user/my-foods")
+                }
+            })
     }
 
     const formFields = [

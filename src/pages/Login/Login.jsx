@@ -1,22 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Shared/SocialLogin";
 import { Helmet } from "react-helmet-async";
 import useContextHook from "../../hooks/useContextHook";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import useAxios from "../../hooks/useAxios";
 
 const Login = () => {
     const { passwordLogin } = useContextHook();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const axiosSecure = useAxios();
 
     const [passVisible, setPassVisible] = useState(false);
 
     const handleUserLogin = e => {
         e.preventDefault();
         const form = e.target;
-        const email = form.email;
-        const password = form.password;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log({ email, password });
         passwordLogin(email, password)
-            .then(res => {
-                console.log(res);
+            .then((res) => {
+                toast.success("login successfully");
+                navigate(location.state || "/");
+                axiosSecure.post("/token", { email: res.user.email })
             })
             .catch(err => console.error(err))
     }

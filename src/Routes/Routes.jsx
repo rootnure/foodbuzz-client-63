@@ -13,12 +13,13 @@ import AddNew from "../pages/User/AddNew";
 import MyFoods from "../pages/User/MYFoods";
 import Orders from "../pages/User/Orders";
 import PrivateRoute from "./PrivateRoute";
+import ErrorLayout from "../Layout/ErrorLayout";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
-        errorElement: <div>Oops...</div>,
+        errorElement: <ErrorLayout></ErrorLayout>,
         children: [
             {
                 index: true,
