@@ -28,6 +28,7 @@ const FoodDetails = () => {
                 <title>{`Foodbuzz | ${food_name}`}</title>
             </Helmet>
             <section className="my-12">
+                <div className="divider my-16 text-3xl font-bold">Food Details</div>
                 <div className="grid grid-cols-2 gap-6 relative">
                     <h2 className="text-3xl text-orange-600 font-exo-2 font-semibold md:hidden text-center py-4 sticky top-0 bg-white z-[99]">{name}</h2>
                     <div className="card card-compact">
@@ -39,13 +40,13 @@ const FoodDetails = () => {
                         <div className="md:col-span-2 space-y-4 px-6">
                             <h2 className="text-5xl font-bold mb-6 hidden md:block">{food_name}</h2>
                             <div className="flex flex-wrap gap-2.5">
-                                <p className="px-3 py-0.5 rounded-full bg-green-200 flex gap-1 text-black"><span>Price: </span><span className="font-semibold flex items-center">{price}</span></p>
+                                <p className="px-3 py-0.5 rounded-full bg-green-200 flex gap-1 text-black"><span>Price: </span><span className="font-semibold flex items-center">{price}tk.</span></p>
                                 <p className="px-3 py-0.5 rounded-full bg-green-200 flex gap-1 text-black"><span>Category: </span><span className="font-semibold">{category}</span></p>
                             </div>
                             <div className="space-y-3">
                                 <p>Available Quantity: <span className="font-bold">{quantity}</span></p>
-                                <p>Made by: <span className="font-bold">{made_by?.author}</span></p>
-                                <p>Origin: <span className="font-bold">{origin}</span></p>
+                                <p>Made by: <span className="font-bold">{made_by?.author} <span className="font-normal text-sm">({made_by?.email})</span></span></p>
+                                <p>Food Origin: <span className="font-bold">{origin}</span></p>
                             </div>
                             <div>
                                 <p className="mt-2">{short_desc}</p>

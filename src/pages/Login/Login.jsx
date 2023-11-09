@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import SocialLogin from "../../Shared/SocialLogin";
 import { Helmet } from "react-helmet-async";
 import useContextHook from "../../hooks/useContextHook";
+import { useState } from "react";
 
 const Login = () => {
     const { passwordLogin } = useContextHook();
+
+    const [passVisible, setPassVisible] = useState(false);
 
     const handleUserLogin = e => {
         e.preventDefault();
@@ -23,10 +26,12 @@ const Login = () => {
                 <title>Foodbuzz | Login</title>
             </Helmet>
             <section className="min-h-96">
-                <div className="hero bg-base-200">
-                    <div className="hero-content flex-col">
-                        <div className="text-center lg:text-left">
+                <div className="hero min-h-[calc(100vh-150px)]">
+                    <div className="hero-content flex-col lg:flex-row">
+                        <div className="text-center lg:text-left bg-green-200 px-6 py-2 rounded-lg h-[500px] flex flex-col justify-center items-center w-96 gap-y-6">
+                            <p className="font-bold text-3xl">Welcome Back</p>
                             <h1 className="text-5xl font-bold">Login now!</h1>
+                            <p className="font-bold mt-4">Login to explore more from us</p>
                         </div>
                         <div className="card flex-shrink-0 w-96 min-w-sm shadow-2xl bg-base-100">
                             <form onSubmit={handleUserLogin} className="card-body">
@@ -40,10 +45,11 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" name="password" placeholder="password" className="input input-bordered" required />
-                                    <label className="label">
-                                        <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                    </label>
+                                    <input type={passVisible ? "text" : "password"} name="password" placeholder="password" className="input input-bordered" required />
+                                </div>
+                                <div onClick={(e) => setPassVisible(e.target.checked)} className="flex gap-1 mt-3">
+                                    <input type="checkbox" id="showPassword" />
+                                    <label htmlFor="showPassword">Show Password</label>
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-primary">Login</button>

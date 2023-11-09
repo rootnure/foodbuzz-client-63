@@ -70,6 +70,7 @@ const OrderNow = () => {
                 <title>Foodbuzz | Order page</title>
             </Helmet>
             <section className="my-12">
+                <div className="divider my-16 text-3xl font-bold">Purchase Now</div>
                 <div className="grid grid-cols-2 gap-6 relative">
                     <h2 className="text-3xl text-orange-600 font-exo-2 font-semibold md:hidden text-center py-4 sticky top-0 bg-white z-[99]">{name}</h2>
                     <div className="card card-compact">
@@ -81,7 +82,7 @@ const OrderNow = () => {
                         <div className="space-y-4 px-6">
                             <h2 className="text-5xl font-bold mb-6 hidden md:block">{food_name}</h2>
                             <div className="flex justify-between text-lg">
-                                <p>Price: <span className="font-bold text-xl">{price}</span></p>
+                                <p>Price: <span className="font-bold text-xl">{price}tk.</span></p>
                                 <p>Available Quantity: <span className="font-bold text-xl">{quantity - sell_count || 0}</span></p>
                             </div>
                             <form onSubmit={handlePurchase} className="grid grid-cols-2 gap-4">
