@@ -7,8 +7,8 @@ const Food = ({ food }) => {
     return (
         <div className="min-h-20">
             <div className="card card-compact rounded-lg shadow-lg border-t'">
-                <figure className="h-80 py-6">
-                    <img src={food_img} alt={'Image of ' + food_name} />
+                <figure className="h-72">
+                    <img src={food_img} alt={'Image of ' + food_name} className='min-h-full min-w-full' />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">{food_name}</h2>

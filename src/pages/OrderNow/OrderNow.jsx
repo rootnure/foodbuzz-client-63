@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import useContextHook from "../../hooks/useContextHook";
 import moment from "moment/moment";
 import useAxios from "../../hooks/useAxios";
+import ReactiveBtn from "../../Shared/ReactiveBtn";
 
 const OrderNow = () => {
     const { id } = useParams();
@@ -78,6 +79,9 @@ const OrderNow = () => {
                     }
                 </div>
                 <div className="form-control mt-6">
+                    <div className="w-fit flex">
+                        <ReactiveBtn></ReactiveBtn>
+                    </div>
                     <button className="btn btn-primary" disabled={user.email === made_by?.email}>{user.email === made_by?.email ? "Can not buy own food" : "Buy Now"}</button>
                 </div>
             </form>

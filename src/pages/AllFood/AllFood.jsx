@@ -4,6 +4,7 @@ import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdKeyboardArrowL
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import useAxios from "../../hooks/useAxios";
+import FramerMotionLoading from "../../Shared/FramerMotionLoading";
 
 const AllFood = () => {
     const [foods, setFoods] = useState([]);
@@ -20,16 +21,30 @@ const AllFood = () => {
     }, [page, limit, axiosSecure]);
 
     useEffect(() => {
-        const numberOfPage = Math.ceil(dataCount / 9);
+        const numberOfPage = Math.ceil(dataCount / limit);
         setPages([...Array(numberOfPage).keys()]);
-    }, [dataCount]);
+    }, [dataCount, limit]);
+
+    useEffect(() => {
+        if (page === 0 || page === pages.length - 1) {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+    }, [page, pages]);
 
     const handlePageChange = pageNo => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+        });
+        setLimit(limit);
         if (pageNo >= 0 && pageNo <= pages.length - 1) {
             setPage(pageNo);
         }
-        setLimit(9);
-        window.location(0, 0);
     }
 
     const handleSearchFood = e => {
@@ -40,7 +55,11 @@ const AllFood = () => {
         } catch (err) {
             searchText = e.target.value;
         }
-        console.log(searchText);
+        axiosSecure.get(`/all-searched-foods?page=${page}&limit=${limit}&searchText=${searchText}`)
+            .then(res => {
+                setFoods(res.data.result);
+                setDataCount(res.data.dataCount);
+            })
     }
 
     return (
@@ -54,15 +73,19 @@ const AllFood = () => {
                     <form onSubmit={handleSearchFood} className="relative w-4/12 flex">
                         <input onChange={handleSearchFood} type="text" name="searchText" placeholder="Search by food name" className="input input-bordered w-full pr-32" />
                         <button type="submit" className="btn btn-primary absolute top-0 right-0 rounded-l-none">Search</button>
-                        <button type="reset" title="Reset" className="btn absolute top-0 bottom-0 right-20 rounded-none border-t-2 border-b-2 border-gray-300">X</button>
                     </form>
                 </section>
                 {/* search results (show all by default) */}
-                <section className="grid grid-cols-3 gap-3">
+                <section className="grid grid-cols-3 gap-5 min-h-96">
                     {
-                        foods.map(food => <Food key={food._id} food={food}></Food>)
+                        foods.length > 0 ?
+                            foods.map(food => <Food key={food._id} food={food}></Food>) :
+                            <div className="h-[550px] flex justify-center items-center col-span-3">
+                                <FramerMotionLoading></FramerMotionLoading>
+                            </div>
                     }
                 </section>
+                {/* pagination buttons */}
                 <section className="flex justify-center my-6">
                     <div className="join join-horizontal">
                         <button
