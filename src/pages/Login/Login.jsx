@@ -5,6 +5,7 @@ import useContextHook from "../../hooks/useContextHook";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import useAxios from "../../hooks/useAxios";
+// import axios from "axios";
 
 const Login = () => {
     const { passwordLogin } = useContextHook();
@@ -24,7 +25,8 @@ const Login = () => {
             .then((res) => {
                 toast.success("login successfully");
                 navigate(location.state || "/");
-                axiosSecure.post("/token", { email: res.user.email })
+                axiosSecure.post("/jwt", { email: res.user.email })
+                // axios.post("http://localhost:5000/api/v1/jwt", { email: res.user.email, with })
             })
             .catch(err => console.error(err))
     }

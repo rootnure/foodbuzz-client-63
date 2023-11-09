@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet-async";
 import useAxios from "../../hooks/useAxios";
 import useContextHook from "../../hooks/useContextHook";
 import { toast } from "react-toastify";
+import Lottie from "lottie-react";
+import stack from "../../assets/stack.json";
 
 const MyFoods = () => {
     const { user } = useContextHook();
@@ -11,10 +13,14 @@ const MyFoods = () => {
     const [modalData, setModalData] = useState({});
     const [foodImg, setFoodImg] = useState('');
     const axiosSecure = useAxios();
+    const [isDataLoading, setIsDataLoading] = useState(true);
 
     useEffect(() => {
         axiosSecure.get(`/my-foods?email=${user.email}`)
-            .then(response => setMyFoods(response.data));
+            .then(response => {
+                setMyFoods(response.data)
+                setIsDataLoading(false);
+            });
     }, [axiosSecure, user])
 
     const handleOpenUpdateDataModal = (id, imageUrl) => {
@@ -51,6 +57,7 @@ const MyFoods = () => {
                 } else {
                     toast.warn("Something went wrong. Try again.");
                 }
+                window.location.reload();
             })
     }
 
@@ -71,46 +78,54 @@ const MyFoods = () => {
             </Helmet>
             <section>
                 <div className="overflow-x-auto">
-                    <table className="table">
-                        {/* head */}
-                        <thead>
-                            <tr>
-                                <th>Food Info</th>
-                                <th>Made By</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* row */}
-                            {
-                                myFoods.map(food =>
-                                    <tr key={food._id}>
-                                        <td>
-                                            <div className="flex items-center space-x-3">
-                                                <div className="avatar">
-                                                    <div className="h-40 max-w-60">
-                                                        <img src={food.food_img} alt={food.food_name} />
+                    {!isDataLoading ? myFoods.length > 0 ?
+                        <table className="table">
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th>Food Info</th>
+                                    <th>Made By</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* row */}
+                                {
+                                    myFoods.map(food =>
+                                        <tr key={food._id}>
+                                            <td>
+                                                <div className="flex items-center space-x-3">
+                                                    <div className="avatar">
+                                                        <div className="h-40 max-w-60">
+                                                            <img src={food.food_img} alt={food.food_name} />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold text-2xl">{food.food_name}</div>
+                                                        <div className="text-lg opacity-70">Price: <span className="font-bold text-black">{food.price}tk.</span></div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div className="font-bold text-2xl">{food.food_name}</div>
-                                                    <div className="text-lg opacity-50">Price: ${food.price}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="text-lg">
-                                            {food.made_by.author}
-                                            <br />
-                                            <span className="badge badge-ghost badge-sm">{food.made_by.email}</span>
-                                        </td>
-                                        <th>
-                                            <button onClick={() => handleOpenUpdateDataModal(food._id, food.food_img)} className="btn btn-sm">Update</button>
-                                        </th>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
+                                            </td>
+                                            <td className="text-lg">
+                                                {food.made_by.author}
+                                                <br />
+                                                <span className="badge badge-ghost badge-sm">{food.made_by.email}</span>
+                                            </td>
+                                            <th>
+                                                <button onClick={() => handleOpenUpdateDataModal(food._id, food.food_img)} className="btn btn-sm">Update</button>
+                                            </th>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table> :
+                        <div className="w-96 mx-auto">
+                            <h2 className="text-2xl text-center font-bold">No Product added yet</h2>
+                        </div> :
+                        <div className="w-96 mx-auto">
+                            <Lottie animationData={stack}></Lottie>
+                        </div>
+                    }
                 </div>
                 {/* Modal here */}
                 <dialog id="updateDataModal" className="modal">

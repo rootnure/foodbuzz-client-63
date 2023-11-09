@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 
 const FramerMotionLoading = () => {
-    return (<motion.div className="h-60 w-60 font-bold text-red-400 text-center text-2xl border-2 border-red-400 bg-white mx-auto flex justify-center items-center"
+    return (<motion.div className="h-60 w-60 font-bold text-red-400 text-center text-2xl border-2 border-red-400 bg-white mx-auto flex justify-center items-center p-4"
         animate={{
             scale: [1, 2, 2, 1, 1],
             // rotate: [0, 0, 270, 270, 0],
@@ -14,7 +14,7 @@ const FramerMotionLoading = () => {
             repeat: Infinity,
             repeatDelay: 1
         }}
-    >No Data Found<br />Search again with different keyword</motion.div>)
+    >No Data till now...<br />Wait a moment or search with different keyword</motion.div>)
 };
 
 export default FramerMotionLoading;

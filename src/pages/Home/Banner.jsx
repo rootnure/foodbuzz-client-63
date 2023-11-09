@@ -8,14 +8,21 @@ import 'swiper/css/navigation';
 import './SwiperStyles.css';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
 
     const slidesData = [
-        { _id: 1, imgURL: "https://i.ibb.co/tqrYc2d/Image.png", title: "Title 1", description: "Short Description 1 to website" },
-        { _id: 2, imgURL: "https://i.ibb.co/tqrYc2d/Image.png", title: "Title 2", description: "Short Description 2 to website" },
-        { _id: 3, imgURL: "https://i.ibb.co/tqrYc2d/Image.png", title: "Title 3", description: "Short Description 3 to website" },
-        { _id: 4, imgURL: "https://i.ibb.co/tqrYc2d/Image.png", title: "Title 4", description: "Short Description 4 to website" },
+        { _id: 1, imgURL: "https://i.ibb.co/GsCBJmB/Image.png" },
+        { _id: 2, imgURL: "https://i.ibb.co/DWzX5K3/Image.png" },
+        { _id: 3, imgURL: "https://i.ibb.co/d7ZsghY/Image.png" },
+        { _id: 4, imgURL: "https://i.ibb.co/5nx8hpJ/Image.png" },
+        { _id: 5, imgURL: "https://i.ibb.co/RPcFHQQ/Image.png" },
+        { _id: 6, imgURL: "https://i.ibb.co/HHVPQPL/Image.png" },
+        { _id: 7, imgURL: "https://i.ibb.co/TkPFtNZ/Image.png" },
+        { _id: 8, imgURL: "https://i.ibb.co/3Rf4fPt/Image.png" },
+        { _id: 9, imgURL: "https://i.ibb.co/yWHs9zC/Image.png" },
+        { _id: 10, imgURL: "https://i.ibb.co/VH4tq4B/Image.png" },
     ]
 
     const progressCircle = useRef(null);
@@ -30,7 +37,7 @@ const Banner = () => {
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
-                    delay: 3500,
+                    delay: 4500,
                     disableOnInteraction: false,
                 }}
                 pagination={{
@@ -44,10 +51,12 @@ const Banner = () => {
                 {/* slides */}
                 {
                     slidesData.map(slide => <SwiperSlide key={slide._id}>
-                        <div className='h-full w-full flex items-center justify-center flex-col bg-sky-50'>
-                            <img src={slide.imgURL} alt="" />
-                            <h2>{slide.title}</h2>
-                            <p>{slide.description}</p>
+                        <div className="h-full w-full flex items-center justify-center flex-col bg-cover" style={{ backgroundImage: `url("${slide.imgURL}")` }}>
+                            <img src={slide.imgURL} alt="Slider Image" className='h-56' />
+                            <div className="bg-green-50 p-x-40 p-4 rounded-lg flex flex-col items-center">
+                                <h2 className='text-xl font-bold'>Get the best from Foodbuzz</h2>
+                                <Link to="/allFood"><button className="btn btn-primary">All Menu</button></Link>
+                            </div>
                         </div>
                     </SwiperSlide>)
                 }

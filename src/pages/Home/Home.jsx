@@ -3,6 +3,7 @@ import Banner from './Banner';
 import TopFoods from './TopFoods';
 import ContactUs from './ContactUs';
 import AppComingSoon from './AppComingSoon';
+import Instagram from './Instagram';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <TopFoods></TopFoods>
+            <Instagram></Instagram>
             <AppComingSoon></AppComingSoon>
             <ContactUs></ContactUs>
         </>

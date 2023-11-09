@@ -13,7 +13,7 @@ const SocialLogin = () => {
             .then((res) => {
                 toast.success('Login successfully');
                 navigate('/');
-                axiosSecure.post("/token", { email: res.user.email })
+                axiosSecure.post("/jwt", { email: res.user.email })
             })
             .catch(err => console.error(err))
     }

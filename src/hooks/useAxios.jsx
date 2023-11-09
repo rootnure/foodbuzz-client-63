@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000/api/v1",
+    baseURL: "https://63-foodbuzz-server.vercel.app/api/v1",
     withCredentials: true
 })
 
