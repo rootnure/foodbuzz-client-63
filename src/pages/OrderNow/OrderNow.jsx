@@ -38,6 +38,7 @@ const OrderNow = () => {
             food_name,
             food_img,
             price,
+            made_by,
             purchase_quantity: parseInt(form.quantity.value),
             customer_name: user.displayName,
             customer_email: user.email,
