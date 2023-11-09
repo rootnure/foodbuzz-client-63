@@ -1,23 +1,21 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const TopFood = ({ topFood }) => {
     const { _id, food_img, food_name, category, price, sell_count } = topFood;
-    const handleViewDetail = id => {
-        console.log(id);
-    }
     return (
         <>
-            <div className="card card-compact bg-base-100 relative group h-[550px] rounded-none hover:rounded-lg">
-                <figure className="h-80 group-hover:h-80 absolute top-24 left-0 right-0 group-hover:top-0 transition-all duration-150 hover:rounded-t-lg">
-                    <img src={food_img} alt={food_name} className="h-full w-full group-hover:rounded-t-lg" />
+            <div className="card card-compact bg-base-100 relative group min-h-[500px] max-h-max rounded-none hover:rounded-lg">
+                <figure className="h-80 group-hover:h-60 absolute top-24 left-0 right-0 group-hover:top-0 transition-all duration-150 group-hover:rounded-t-lg">
+                    <img src={food_img} alt={food_name} className="min-h-full min-w-full group-hover:rounded-t-lg" />
                 </figure>
-                <div className="card-body absolute top-40 group-hover:top-80 transition-all duration-150 invisible group-hover:visible">
-                    <h2 className="card-title">{food_name}</h2>
-                    <h2 className="card-title">Category: {category}</h2>
-                    <h2 className="card-title">Price: {price}</h2>
-                    <h2 className="card-title">Total {sell_count} sold</h2>
-                    <div className="card-actions justify-end">
-                        <button onClick={() => handleViewDetail(_id)} className="btn btn-primary">Buy Now</button>
+                <div className="card-body absolute top-40 group-hover:top-60 transition-all duration-150 invisible group-hover:visible w-full border-l-2 border-r-2 border-b-2 rounded-b-lg">
+                    <h2 className="card-title font-bold text-3xl">{food_name}</h2>
+                    <p className='py-1.5'>Category: <span className='px-3 py-1 font-bold rounded-full bg-green-200 w-fit'>{category}</span></p>
+                    <p>Price: <span className='font-bold text-xl text-green-600'>{price}tk.</span></p>
+                    <p className='py-2'>Sell Count: {sell_count}</p>
+                    <div className="card-actions w-full">
+                        <Link to={`/food/details/${_id}`} className='w-full'><button className="btn btn-primary w-full">Details</button></Link>
                     </div>
                 </div>
             </div>

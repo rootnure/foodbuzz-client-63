@@ -6,6 +6,10 @@ aside a.active {
     @apply bg-green-300;
 }
 
+.active-page {
+    @apply btn-primary;
+}
+
 table,
 tr,
 th,

@@ -65,14 +65,30 @@ const AllFood = () => {
                 </section>
                 <section className="flex justify-center my-6">
                     <div className="join join-horizontal">
-                        <button onClick={() => handlePageChange(0)} className="btn btn-sm join-item"><MdKeyboardDoubleArrowLeft></MdKeyboardDoubleArrowLeft></button>
-                        <button onClick={() => handlePageChange(page - 1)} className="btn btn-sm join-item"><MdKeyboardArrowLeft></MdKeyboardArrowLeft></button>
+                        <button
+                            onClick={() => handlePageChange(0)}
+                            className="btn btn-sm join-item"
+                            title="Go to first page"
+                            disabled={page === 0}><MdKeyboardDoubleArrowLeft></MdKeyboardDoubleArrowLeft></button>
+                        <button
+                            onClick={() => handlePageChange(page - 1)}
+                            className="btn btn-sm join-item"
+                            title="Go to previous page"
+                            disabled={page === 0}><MdKeyboardArrowLeft></MdKeyboardArrowLeft></button>
                         {
                             pages.map(pageNo =>
-                                <button key={pageNo} onClick={() => handlePageChange(pageNo)} className="btn btn-sm join-item">{pageNo + 1}</button>)
+                                <button key={pageNo} onClick={() => handlePageChange(pageNo)} className={`btn btn-sm join-item ${page === pageNo ? "active-page" : ""}`}>{pageNo + 1}</button>)
                         }
-                        <button onClick={() => handlePageChange(page + 1)} className="btn btn-sm join-item"><MdKeyboardArrowRight></MdKeyboardArrowRight></button>
-                        <button onClick={() => handlePageChange(pages.length - 1)} className="btn btn-sm join-item"><MdKeyboardDoubleArrowRight></MdKeyboardDoubleArrowRight></button>
+                        <button
+                            onClick={() => handlePageChange(page + 1)}
+                            className="btn btn-sm join-item"
+                            title="Go to next page"
+                            disabled={page >= pages.length - 1}><MdKeyboardArrowRight></MdKeyboardArrowRight></button>
+                        <button
+                            onClick={() => handlePageChange(pages.length - 1)}
+                            className="btn btn-sm join-item"
+                            title="Go to last page"
+                            disabled={page >= pages.length - 1}><MdKeyboardDoubleArrowRight></MdKeyboardDoubleArrowRight></button>
                     </div>
                 </section>
             </div>
