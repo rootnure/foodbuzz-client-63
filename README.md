@@ -14,6 +14,19 @@
 - User can view his/her profile shortly
 - Verification token will be generated and used upon need (httpOnly)
 
+## Library/Packages used
+- React
+- React DOM
+- React Router
+- React Icons
+- React Fast Marquee
+- Prop Types
+- Tailwind
+- DaisyUI
+- React Toast
+- Sweet Alert 2
+- AOS Animation
+- Firebase
 
 ## React + Vite
 
